@@ -1,0 +1,161 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting Started
+
+In this tutorial you will learn to make a simple setup of Sequelize.
+
+## Installing
+
+Sequelize is available via [npm](https://www.npmjs.com/package/@sequelize/core) (or [yarn](https://yarnpkg.com/package/@sequelize/core)).
+
+:::info
+
+The following commands will install Sequelize v7.
+If you're looking for Sequelize v6 (published as `sequelize` instead of `@sequelize/core`),
+[visit the v6 documentation](pathname:///docs/v6/getting-started/)
+
+:::
+
+```bash npm2yarn
+# This will install Sequelize 7, the latest alpha release of Sequelize
+npm i @sequelize/core@alpha
+```
+
+## Connecting to a database
+
+To connect to the database, you must create a Sequelize instance, and pass it the database configuration
+information, such as the dialect, the host, and the username and password.
+
+Each dialect supports a different set of options. Follow the links below to see how to connect to your database:
+
+- [PostgreSQL](./databases/postgres.mdx)
+- [MySQL](./databases/mysql.mdx)
+- [MariaDB](./databases/mariadb.mdx)
+- [SQLite](./databases/sqlite.mdx)
+- [Microsoft SQL Server](./databases/mssql.mdx)
+- [DB2 for LUW](./databases/db2.mdx)
+- [DB2 for IBM i](./databases/ibmi.mdx)
+- [Snowflake](./databases/snowflake.mdx)
+
+If your database is not listed above, Sequelize does not support it out of the box.
+However, Sequelize is extensible, and you can create your own dialect, or find a community-maintained one.
+For more information, see our documentation about [supporting other databases](./databases/new.md).
+
+Here is a short example of how to connect to a SQLite database:
+
+```javascript
+import { Sequelize } from '@sequelize/core';
+import { SqliteDialect } from '@sequelize/sqlite3';
+
+const sequelize = new Sequelize({
+  dialect: SqliteDialect,
+});
+```
+
+The Sequelize constructor accepts many options.
+They are documented in the [API Reference](pathname:///api/v7/classes/_sequelize_core.index.Sequelize.html#constructor).
+
+### Testing the connection
+
+You can use the `.authenticate()` function to test if the connection is OK.
+Note that this is completely optional, but recommended as Sequelize fetches your Database version on the first connection.
+That version is then used to determine which SQL features are available.
+
+```js
+try {
+  await sequelize.authenticate();
+  console.log('Connection has been established successfully.');
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}
+```
+
+### Closing the connection
+
+Sequelize uses a connection pool to manage connections to the database. This means some connection can remain open even after you're done with them.
+If you wish to gracefully shut down your application, you can use [`sequelize.close()`](pathname:///api/v7/classes/_sequelize_core.index.Sequelize.html#close) to close all active connections.
+
+:::caution
+
+Once `sequelize.close()` has been called, it's impossible to open a new connection. You will need to create a new Sequelize instance to access your database again.
+
+:::
+
+## Terminology convention
+
+Observe that, in the examples above, `Sequelize` refers to the library itself while the lowercase `sequelize` refers to an instance of Sequelize.
+This is the recommended convention, and it will be followed throughout the documentation.
+
+## TypeScript
+
+Sequelize provides built-in TypeScript support.
+
+Head to the [Version Policy page](/releases) to know which versions of TypeScript are supported,
+and make sure that the [`@types/node`](https://www.npmjs.com/package/@types/node) package corresponding to your Node.js version is installed
+in your project.
+
+:::info
+
+Sequelize makes use of the the [`exports`](https://nodejs.org/api/packages.html#exports) `package.json` field.
+You may need to update your `tsconfig.json` configuration to make sure TypeScript's module resolution supports it.
+
+At time of writing (TS 5.4), this can be done in two ways:
+
+- Set [`moduleResolution`](https://www.typescriptlang.org/tsconfig#moduleResolution) to `node16`, `nodenext`, or `bundler`,
+- or set [`resolvePackageJsonExports`](https://www.typescriptlang.org/tsconfig#resolvePackageJsonExports) to `true`.
+
+:::
+
+## CommonJS or ESM?
+
+Our documentation makes heavy use of ECMAScript Modules (ESM), but CommonJS is fully supported by Sequelize.
+To use Sequelize in a CommonJS project, simply use `require` instead of `import`:
+
+```js
+// how you would import Sequelize in ESM
+import { Sequelize, Op, Model, DataTypes } from '@sequelize/core';
+
+// how you would import Sequelize in CommonJS
+const { Sequelize, Op, Model, DataTypes } = require('@sequelize/core');
+```
+
+Most of the methods provided by Sequelize are asynchronous and therefore return [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+we highly recommend using **ECMAScript Modules**, as they give you access to [Top-Level Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await), which we use extensively in our examples.
+Head to [Node.js' documentation](https://nodejs.org/api/esm.html) to learn how to use them in Node.js.
+
+## Logging
+
+To ease debugging, you can enable logging in Sequelize. This is done by setting the `logging` option to a function that gets executed every time Sequelize needs to log something.
+
+Examples:
+
+```js
+const sequelize = new Sequelize({
+  dialect: SqliteDialect,
+
+  // Disables logging (default)
+  logging: false,
+
+  // Sends the logging output to the console
+  logging: console.log,
+
+  // You can also use an arbitrary function, which can be used to send logs to a logging tool
+  logging: (...msg) => console.log(msg),
+});
+```
+
+:::tip
+
+If you need to log only specific queries, you can use the `logging` option in all model methods that execute queries,
+as well as all `queryInterface` methods.
+
+:::
+
+## Next Step
+
+Now that you have a Sequelize instance, the next step to get started is to [define your first models](./models/defining-models.mdx).

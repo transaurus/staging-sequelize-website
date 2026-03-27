@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "v6 - stable",
+    "description": "The label for version 6.x.x"
+  },
+  "sidebar.tutorialSidebar.category.Core Concepts": {
+    "message": "Core Concepts",
+    "description": "The label for category Core Concepts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Advanced Association Concepts": {
+    "message": "Advanced Association Concepts",
+    "description": "The label for category Advanced Association Concepts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Other topics": {
+    "message": "Other topics",
+    "description": "The label for category Other topics in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Moved": {
+    "message": "Moved",
+    "description": "The label for category Moved in sidebar tutorialSidebar"
+  }
+}

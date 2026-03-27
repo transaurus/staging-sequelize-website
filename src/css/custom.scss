@@ -1,0 +1,117 @@
+@use './variables' as *;
+@use './ads.scss';
+
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #{$brand-primary};
+  --ifm-color-secondary: #ddd;
+  --ifm-color-primary-dark: #{lighten($brand-primary-dark, 5%)};
+  --ifm-color-primary-darker: #{$brand-primary-dark};
+  --ifm-color-primary-darkest: #{darken($brand-primary-dark, 5%)};
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(102, 212, 189);
+  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgb(72 77 91 / 0.1);
+
+  &[data-theme='dark'] {
+    --ifm-color-primary: #{$brand-primary-light};
+    --ifm-color-primary-dark: #{$brand-primary};
+    --ifm-color-primary-darker: #{lighten($brand-primary-dark, 5%)};
+    --ifm-color-primary-darkest: #{$brand-primary-dark};
+    --docusaurus-highlighted-code-line-bg: rgb(255 255 255 / 0.05);
+  }
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.footer__copyright {
+  margin-top: 16px;
+
+  a {
+    color: var(--ifm-footer-color);
+  }
+}
+
+.footer--dark {
+  background: #13233d;
+}
+
+.footer--dark .col.footer__col {
+  text-align: center;
+}
+
+/* replace the negative margin hack with 'gap', which also supports vertical gap */
+.row {
+  gap: var(--ifm-spacing-horizontal);
+  margin: 0;
+}
+
+/* .col.col allows us to increase the specificity by 1, instead of using !important which can only be used once */
+.row .col.col {
+  padding: 0;
+  /* since padding was 'inside' the border-box, but gap is 'outside' of it, subtract the new gap from the max size */
+  max-width: calc(var(--ifm-col-width) - var(--ifm-spacing-horizontal));
+}
+
+.hidden {
+  display: none;
+}
+
+.container--small {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 var(--ifm-spacing-horizontal);
+  width: 100%;
+}
+
+.code-block-error-line {
+  background-color: rgb(255 0 0 / 0.13);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid rgb(255 0 0 / 0.5);
+}
+
+.code-block-success-line {
+  background-color: rgb(0 164 0 / 0.15);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid rgb(0 164 0 / 0.5);
+}
+
+figure {
+  margin: var(--ifm-leading) 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+
+  > p {
+    display: contents;
+  }
+
+  img {
+    border-radius: var(--ifm-code-border-radius);
+  }
+
+  figcaption {
+    font-style: italic;
+  }
+}

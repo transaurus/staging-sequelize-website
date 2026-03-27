@@ -1,0 +1,53 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[4583],{4618:(e,s,t)=>{t.d(s,{g:()=>o});var i=t(98921),n=t(96540);const a="//cdn.carbonads.com/carbon.js?serve=CEAI627Y&placement=sequelizeorg";function o(e){let{ref:s,selector:t,on:o="all"}=e;const r=(0,i.U)("(max-width: 996px)")??!1;(0,n.useEffect)((()=>{let e=null,i=null;return function(e,s){return"all"===s||("mobile"===s?e:!e)}(r,o)&&(s?e=s.current:t&&(e=document.querySelector(t))),e&&(i=document.createElement("script"),i.id="_carbonads_js",i.src=a,i.async=!0,e.append(i)),()=>{e&&function(e){e?.remove(),document.querySelector("#carbonads")?.remove()}(i)}}),[s,t,o,r])}},84680:(e,s,t)=>{t.r(s),t.d(s,{default:()=>z});var i=t(78478),n=t(5260),a=t(28774),o=t(44586),r=t(44561),l=t(34164),c=t(96540),d=t(21432);function u(e){const s=(Array.isArray(e)?e:[e]).flatMap((e=>e.split("\n"))),t=function(e){return(""===e[0]?e[1]:e[0]).match(/^\s*/)[0].length}(s);return s.map((e=>e.slice(Math.max(0,t)))).join("\n").trim()}const h={features:"features_Bwmx",row:"row_V1Wb",col:"col_K6kw",codeBlock:"codeBlock_r240",footerCta:"footerCta_cA7J"};var m=t(74848);const p=[{title:"Data Modeling",description:(0,m.jsx)(m.Fragment,{children:"Define your models with ease and make optional use of automatic database synchronization."}),code:u`
+      const Wishlist = sequelize.define("Wishlist", {
+        title: DataTypes.STRING,
+      });
+      const Wish = sequelize.define("Wish", {
+        title: DataTypes.STRING,
+        quantity: DataTypes.NUMBER,
+      });
+
+      // Automatically create all tables
+      await sequelize.sync();
+    `},{title:"Associations",description:(0,m.jsx)(m.Fragment,{children:"Define associations between models and let Sequelize handle the heavy lifting."}),code:u`
+      Wish.belongsTo(Wishlist);
+      Wishlist.hasMany(Wish);
+
+      const wishlist = await Wishlist.findOne();
+      const wishes = await wishlist.getWishes();
+      const wish = await wishlist.createWish({ 
+        title: 'Toys', quantity: 3,
+      });
+
+      await wishlist.removeWish(wish);
+    `},{title:"Soft deletion",description:(0,m.jsx)(m.Fragment,{children:"Mark data as deleted instead of removing it once and for all from the database."}),code:u`
+      const User = sequelize.define("User", 
+        { username: DataTypes.STRING },
+        { paranoid: true },
+      });
+
+      const user = await User.findOne();
+
+      await user.destroy();
+      await User.findAll(); // non-deleted only
+      await User.findAll({ paranoid: false }); // all
+    `}];function g(e){let{title:s,description:t,code:i}=e;return(0,m.jsxs)("div",{className:(0,l.A)("col col--4",h.col),children:[(0,m.jsxs)("div",{className:"text--center padding-horiz--md",children:[(0,m.jsx)("h3",{children:s}),(0,m.jsx)("p",{children:t})]}),(0,m.jsx)(d.A,{language:"js",className:h.codeBlock,children:i})]})}function x(){return(0,m.jsxs)("section",{className:h.features,children:[(0,m.jsx)("div",{className:"container",children:(0,m.jsx)("div",{className:(0,l.A)("row",h.row),children:p.map(((e,s)=>(0,m.jsx)(g,{...e},s)))})}),(0,m.jsxs)("div",{className:(0,l.A)("container--small",h.footerCta),children:[(0,m.jsx)("h2",{children:"Ready to get started with Sequelize?"}),(0,m.jsxs)("p",{children:[(0,m.jsx)(a.A,{className:"topics",to:"/docs/v6/other-topics/transactions/",children:"Transactions"}),","," ",(0,m.jsx)(a.A,{className:"topics",to:"/docs/v6/other-topics/migrations/",children:"migrations"}),","," ",(0,m.jsx)(a.A,{className:"topics",to:"/docs/v6/other-topics/typescript/",children:"strong typing"}),","," ",(0,m.jsx)(a.A,{className:"topics",to:"/docs/v6/other-topics/other-data-types/#json-sqlite-mysql-mariadb-oracle-and-postgresql-only",children:"JSON querying"}),","," ",(0,m.jsx)(a.A,{className:"topics",to:"/docs/v6/other-topics/hooks/",children:"lifecycle events (hooks)"}),", and more.",(0,m.jsx)("br",{}),"Learn more about the many features Sequelize has to offer!"]}),(0,m.jsx)(a.A,{className:"button button--primary button--lg",to:"/docs/v6/getting-started",children:"Getting Started"})]})]})}var j=t(1296);const f={usage:"usage_xVQg",usageRow:"usageRow_UYU5",usageSection:"usageSection_NZHH",featureSvg:"featureSvg_RSqb",docsLink:"docsLink_pXB_"};function v(){return(0,m.jsx)("section",{className:f.usage,children:(0,m.jsx)("div",{className:"container--small",children:(0,m.jsxs)("div",{className:(0,l.A)("row",f.usageRow),children:[(0,m.jsxs)("div",{className:f.usageSection,children:[(0,m.jsx)("h2",{children:"Install dependencies"}),(0,m.jsx)(d.A,{language:"bash",children:u`
+                npm install sequelize sqlite3
+                # or
+                yarn add sequelize sqlite3
+              `}),(0,m.jsx)("p",{className:f.docsLink,children:(0,m.jsxs)(a.A,{to:"/docs/v6/getting-started/",children:["Getting Started ",(0,m.jsx)(j.A,{size:"1.25em"})]})})]}),(0,m.jsxs)("div",{className:f.usageSection,children:[(0,m.jsx)("h2",{children:"Define models"}),(0,m.jsx)(d.A,{language:"js",children:u`
+                import { Sequelize, DataTypes } from 'sequelize';
+
+                const sequelize = new Sequelize('sqlite::memory:');
+                const User = sequelize.define('User', {
+                  username: DataTypes.STRING,
+                  birthday: DataTypes.DATE,
+                });
+              `}),(0,m.jsx)("p",{className:f.docsLink,children:(0,m.jsxs)(a.A,{to:"/docs/v6/core-concepts/model-basics/",children:["Defining Models ",(0,m.jsx)(j.A,{size:"1.25em"})]})})]}),(0,m.jsxs)("div",{className:f.usageSection,children:[(0,m.jsx)("h2",{children:"Persist and query"}),(0,m.jsx)(d.A,{language:"js",children:u`
+                const jane = await User.create({
+                  username: 'janedoe',
+                  birthday: new Date(1980, 6, 20),
+                });
+
+                const users = await User.findAll();
+              `}),(0,m.jsx)("p",{className:f.docsLink,children:(0,m.jsxs)(a.A,{to:"/docs/v6/core-concepts/model-querying-basics/",children:["Querying Models ",(0,m.jsx)(j.A,{size:"1.25em"})]})})]})]})})})}var y=t(27428);const b={users:"users_PJ_b",userRow:"userRow_FoEm",slide:"slide_Niur",testimonialWrapper:"testimonialWrapper_DmrP",testimonialText:"testimonialText_rWzM",userName:"userName_xeF9"},w=[{name:"uphold",image:"/img/uphold-logo.svg",testimonial:"Uphold is proud to be using Sequelize for 7+ years. It has served us well and has allowed us to grow to 12 million users (and counting). We will continue to invest and contribute in the platform."},{image:"/img/bitovi-logo.png",style:{maxHeight:50},name:"Bitovi",testimonial:"We have used Sequelize in enterprise projects for some of our Fortune 100 and Fortune 500 clients. It is used in deployments that are depended on by hundreds of millions of devices every year."},{image:"/img/ermeshotels-logo.png",name:"Ermes Hotels",testimonial:"Using Sequelize in production for two different apps with 30k+ daily users by 2 years. I doubt there is something better at this moment in terms of productivity and features."},{image:"/img/secure-coders.png",name:"Secure Coders",testimonial:"Sequelize provides a reliable and convenient ORM for any SQL dialect which greatly simplifies working with both simple and complex data models. The data migration features are just icing on the cake.",author:"Charley Wooley"},{image:"/img/logo-snaplytics-green.png",name:"Snaplytics",testimonial:"We've been using sequelize since we started in the beginning of 2015. We use it for our graphql servers (in connection with graphql-sequelize), and for all our background workers.",style:{paddingTop:"10px"}},{image:"/img/walmart-labs-logo.png",name:"Walmart Labs",testimonial:"... we are avid users of sequelize and have been for the past 18 months. (Feb 2017)",style:{paddingTop:"15px"}}];function N(){const[e,s]=(0,c.useState)(w[0]),[t,i]=(0,c.useState)(window.innerWidth);function n(){i(window.innerWidth)}(0,c.useEffect)((()=>(window.addEventListener("resize",n),()=>{window.removeEventListener("resize",n)})),[]);const a=t<=768;return(0,m.jsx)("section",{className:b.users,children:(0,m.jsxs)("div",{className:"container",children:[(0,m.jsx)("h2",{children:"Trusted and used by"}),(0,m.jsxs)("div",{className:(0,l.A)(b.userRow),children:[(0,m.jsx)(y.FN,{showArrows:!1,showStatus:!1,showIndicators:!1,infiniteLoop:!0,showThumbs:!1,useKeyboardArrows:!0,autoPlay:!0,stopOnHover:!0,swipeable:!0,emulateTouch:!0,centerSlidePercentage:a?75:25,centerMode:!0,onChange:e=>{s(w[e])},transitionTime:1e3,children:w.map((e=>(0,m.jsx)("div",{className:b.slide,children:(0,m.jsx)("img",{src:e.image,style:e.style,alt:e.name})},e.name)))}),(0,m.jsx)("div",{className:b.testimonialWrapper,children:(0,m.jsxs)("div",{className:b.testimonial,children:[(0,m.jsx)("span",{className:b.testimonialText,children:e.testimonial}),(0,m.jsx)("span",{className:b.userName,children:e.author?`${e.author} (${e.name})`:e.name})]})})]})]})})}var A=t(4618);const S={heroBanner:"heroBanner_jHI5",heroBannerContainer:"heroBannerContainer_YWSU",heroSubtitle:"heroSubtitle_jkYB",textContainer:"textContainer_ggFx",buttons:"buttons_Pntg",buttonGroup:"buttonGroup_e_8M",supportButton:"supportButton_WNPo"};function q(){const{siteConfig:e}=(0,o.A)();return(0,A.g)({selector:".ads-container"}),(0,m.jsx)("header",{className:(0,l.A)("hero hero--primary",S.heroBanner),children:(0,m.jsxs)("div",{className:(0,l.A)("container",S.heroBannerContainer),children:[(0,m.jsx)("img",{src:"/img/logo.svg",className:"container-logo",alt:""}),(0,m.jsxs)("div",{className:S.textContainer,children:[(0,m.jsx)("h1",{className:"hero__title",children:e.title}),(0,m.jsx)("p",{className:S.heroSubtitle,children:e.tagline}),(0,m.jsxs)("div",{className:S.buttons,children:[(0,m.jsxs)("div",{className:S.buttonGroup,children:[(0,m.jsx)(a.A,{className:"button button--primary button--lg",to:"/docs/v6/getting-started",children:"Getting Started"}),(0,m.jsx)(a.A,{className:"button button--secondary button--lg",to:"pathname:///api/v6/identifiers",children:"API Reference"})]}),(0,m.jsxs)("div",{className:S.buttonGroup,children:[(0,m.jsx)(a.A,{className:"button button--secondary button--lg",to:"/docs/v6/other-topics/upgrade",children:"Upgrade to v6"}),(0,m.jsx)(a.A,{className:(0,l.A)("button button--secondary button--lg",S.supportButton),to:"https://opencollective.com/sequelize",children:"Support us"})]})]})]})]})})}function z(){const{siteConfig:e}=(0,o.A)();return(0,m.jsxs)(r.A,{description:e.tagline,children:[(0,m.jsx)(n.A,{titleTemplate:"%s",children:(0,m.jsx)("title",{children:"Sequelize | Feature-rich ORM for modern TypeScript & JavaScript"})}),(0,m.jsx)(q,{}),(0,m.jsxs)("main",{children:[(0,m.jsx)(v,{}),(0,m.jsx)(x,{}),(0,m.jsx)(i.A,{children:()=>(0,m.jsx)(N,{})})]})]})}}}]);
