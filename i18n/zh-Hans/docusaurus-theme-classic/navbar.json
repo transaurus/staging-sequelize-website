@@ -1,0 +1,50 @@
+{
+  "title": {
+    "message": "Sequelize",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Sequelize Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.API References": {
+    "message": "API References",
+    "description": "Navbar item with label API References"
+  },
+  "item.label.Slack": {
+    "message": "Slack",
+    "description": "Navbar item with label Slack"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Security": {
+    "message": "Security",
+    "description": "Navbar item with label Security"
+  },
+  "item.label.Sequelize 7": {
+    "message": "Sequelize 7",
+    "description": "Navbar item with label Sequelize 7"
+  },
+  "item.label.Sequelize 6": {
+    "message": "Sequelize 6",
+    "description": "Navbar item with label Sequelize 6"
+  },
+  "item.label.Sequelize 5": {
+    "message": "Sequelize 5",
+    "description": "Navbar item with label Sequelize 5"
+  },
+  "item.label.Sequelize 4": {
+    "message": "Sequelize 4",
+    "description": "Navbar item with label Sequelize 4"
+  },
+  "item.label.Sequelize 3": {
+    "message": "Sequelize 3",
+    "description": "Navbar item with label Sequelize 3"
+  },
+  "item.label.Sequelize 2": {
+    "message": "Sequelize 2",
+    "description": "Navbar item with label Sequelize 2"
+  }
+}

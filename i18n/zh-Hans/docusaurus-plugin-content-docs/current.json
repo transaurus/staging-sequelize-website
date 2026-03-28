@@ -1,0 +1,26 @@
+{
+  "version.label": {
+    "message": "v7 - alpha",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Databases": {
+    "message": "Databases",
+    "description": "The label for category Databases in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Models & Tables": {
+    "message": "Models & Tables",
+    "description": "The label for category Models & Tables in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Querying": {
+    "message": "Querying",
+    "description": "The label for category Querying in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Associations": {
+    "message": "Associations",
+    "description": "The label for category Associations in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Other topics": {
+    "message": "Other topics",
+    "description": "The label for category Other topics in sidebar tutorialSidebar"
+  }
+}
